@@ -2282,7 +2282,7 @@ def parse_args():
     parser.add_option("-o","--sort_states", default="false", help="Whether to sort the states")
     parser.add_option("-r","--run_id", default="0", help="experiment id")
     parser.add_option("-c","--cons_param", default="1", help="constraint parameter")
-    parser.add_option("-t","--method_mode", default="1", help="method_mode: 0: BM-HMM; 1; OU-HMM")
+    parser.add_option("-t","--method_mode", default="1", help="method_mode: 0: Phylo-HMGP-BM; 1; Phylo-HMGP-OU")
     parser.add_option("-i","--initial_weight", default="0.1", help="initial weight for initial parameters")
     parser.add_option("-j","--initial_magnitude", default="2", help="initial magnitude for initial parameters")
     parser.add_option("-s","--version", default="9", help="dataset version")
