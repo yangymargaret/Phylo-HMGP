@@ -1682,12 +1682,8 @@ def run(hmm_estimate,num_states,filename,length_vec,root_path,multiple,species_n
     for i in range(0,base_num):
         x2[:,i] = x1[:,base_num-1-i]
 
-    if method_mode==2 or method_mode==3:
-        x = x2.copy()
-    else:
-        x = x1.copy()
-    x = np.log(x)
-    # x = x[:,0:3]
+    # x = np.log(x)
+    x = x2.copy()
     print x.shape
     print x[0]
 
