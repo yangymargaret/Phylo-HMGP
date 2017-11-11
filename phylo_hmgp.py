@@ -1641,7 +1641,7 @@ def run(hmm_estimate,num_states,filename,length_vec,root_path,multiple,species_n
         sort_states,run_id1,cons_param,method_mode,initial_weight,initial_magnitude, version):
     
     # load the edge list
-    filename2 = "edge.txt"    
+    filename2 = "edge.1.txt"    
     if(os.path.exists(filename2)==True):
         f = open(filename2, 'r')
         print("edge list loaded")
@@ -1649,7 +1649,7 @@ def run(hmm_estimate,num_states,filename,length_vec,root_path,multiple,species_n
         print edge_list
 
     # load branch length file if provided
-    filename2 = "branch_length.txt"
+    filename2 = "branch_length.1.txt"
     if(os.path.exists(filename2)==True):
         f = open(filename2, 'r')
         print("branch list loaded")
@@ -1667,16 +1667,24 @@ def run(hmm_estimate,num_states,filename,length_vec,root_path,multiple,species_n
     version = int(version)
 
     # load the features
-    filename1 = "combine_feature.txt" # input
+    filename1 = "sig_feature.1.txt" # input
     if(os.path.exists(filename1)==False):
         print "there is no such file %s"%(filename1)
         return
-    filename2 = "combine_lenvec.txt"  # input
+    filename2 = "sig_lenVec.1.txt"  # input
+
     if(os.path.exists(filename2)==False):
         print "there is no such file %s"%(filename2)
         return
-    x1 = np.loadtxt(filename1, dtype='float', delimiter='\t')
+
+    # x1 = np.loadtxt(filename1, dtype='float', delimiter='\t')
     #x1 = x_1[:,1:] # the first column is region_id
+
+    sig = np.loadtxt(filename1,dtype={'names':('chrname','start','stop','value1','value2','value3','value4','value5'),
+                                    'formats':('S10','int32','int32','float32','float32','float32','float32','float32')}) # need to be modified
+
+    x1 = np.array((sig['value1'],sig['value2'],sig['value3'],sig['value4'],sig['value5'])).T
+
     x2 = np.zeros(x1.shape)
     base_num = x1.shape[1]
     for i in range(0,base_num):
@@ -1692,6 +1700,9 @@ def run(hmm_estimate,num_states,filename,length_vec,root_path,multiple,species_n
 
     path_1 = ""  # please define the output directory
 
+    #x = x[0:5000,:]
+    #len_vec = [x.shape[0]]
+
     if method_mode == 0:
         tree1 = phyloHMM(n_components=n_components1, run_id=run_id, n_samples = x.shape[0], n_features = x.shape[1], 
                      observation=x, edge_list=edge_list, initial_magnitude = initial_magnitude, 
@@ -1701,15 +1712,15 @@ def run(hmm_estimate,num_states,filename,length_vec,root_path,multiple,species_n
         state_est = tree1.predict(x,len_vec)
 
         # save the estimated states and parameters
-        filename3 = "%s/estimate_%d_bm_%d_s%d"%(path_1, run_id, n_components1, version)
+        filename3 = "%s/estimate_bm_%d_%d_s%d"%(path_1, run_id, n_components1, version)
         np.savetxt(filename3, state_est, fmt='%d', delimiter='\t')
-        filename1 = "%s/branch_%d_bm_%d_s%d"%(path_1, run_id, n_components1, version)
+        filename1 = "%s/branch_bm_%d_%d_s%d"%(path_1, run_id, n_components1, version)
         np.savetxt(filename1, tree1.branch_params, fmt='%.6f', delimiter='\t')
-        filename1 = "%s/means_%d_bm_%d_s%d"%(path_1, run_id, n_components1, version)
+        filename1 = "%s/means_bm_%d_%d_s%d"%(path_1, run_id, n_components1, version)
         np.savetxt(filename1, tree1.means_, fmt='%.6f', delimiter='\t')
-        filename1 = "%s/trans_%d_bm_%d_s%d"%(path_1, run_id, n_components1, version)
+        filename1 = "%s/trans_bm_%d_%d_s%d"%(path_1, run_id, n_components1, version)
         np.savetxt(filename1, tree1.transmat_, fmt='%.6f', delimiter='\t')
-        filename1 = "%s/start_%d_bm_%d_s%d"%(path_1, run_id, n_components1, version)
+        filename1 = "%s/start_bm_%d_%d_s%d"%(path_1, run_id, n_components1, version)
         np.savetxt(filename1, tree1.startprob_, fmt='%.6f', delimiter='\t')
 
     else:
@@ -1735,16 +1746,15 @@ def run(hmm_estimate,num_states,filename,length_vec,root_path,multiple,species_n
         state_est = tree1.predict(x,len_vec)
 
         # save the estimated states and parameters
-        filename3 = "%s/estimate_ou_%d_1a1_%.2f_%d_s%d"%(path_1, run_id, lambda_0, n_components1, version)
+        filename3 = "%s/estimate_ou_%d_%.2f_%d_s%d"%(path_1, run_id, lambda_0, n_components1, version)
         state_est = tree1.predict(x,len_vec)
         np.savetxt(filename3, state_est, fmt='%d', delimiter='\t')
-        filename1 = "%s/means_ou_%d_1a1_%.2f_%d_s%d"%(path_1, run_id, lambda_0, n_components1, version)
+        filename1 = "%s/params_ou_%d_%.2f_%d_s%d"%(path_1, run_id, lambda_0, n_components1, version)
         np.savetxt(filename1, tree1.params_vec1, fmt='%.6f', delimiter='\t')
-        filename1 = "%s/trans_ou_%d_1a1_%.2f_%d_s%d"%(path_1, run_id, lambda_0, n_components1, version)
+        filename1 = "%s/trans_ou_%d_%.2f_%d_s%d"%(path_1, run_id, lambda_0, n_components1, version)
         np.savetxt(filename1, tree1.transmat_, fmt='%.6f', delimiter='\t')
-        filename1 = "%s/start_ou_%d_1a1_%.2f_%d_s%d"%(path_1, run_id, lambda_0, n_components1, version)
+        filename1 = "%s/start_ou_%d_%.2f_%d_s%d"%(path_1, run_id, lambda_0, n_components1, version)
         np.savetxt(filename1, tree1.startprob_, fmt='%.6f', delimiter='\t')
-
 
 if __name__ == '__main__':
 
