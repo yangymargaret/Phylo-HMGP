@@ -1,3 +1,5 @@
+# utils.py is reused from the hmmlearn package
+
 import numpy as np
 from scipy.misc import logsumexp
 
