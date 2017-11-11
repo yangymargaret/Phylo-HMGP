@@ -1,4 +1,4 @@
-# base1.py is based on modification of the base.py file from hmmlearn package
+# base1.py is based on modification of the base.py file from the hmmlearn package
 
 from __future__ import print_function
 
