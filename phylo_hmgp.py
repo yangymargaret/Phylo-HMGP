@@ -1619,20 +1619,18 @@ class phyloHMM(_BaseHMM):
 
 def parse_args():
     parser = OptionParser(usage="Replication timing state estimation", add_help_option=False)
-    parser.add_option("-h","--hmm", default="false", help="Perform HMM estimation (default: false")
-    parser.add_option("-n", "--num_states", default="8", help="Set the number of states to estimate for HMM model")
-    parser.add_option("-f","--filename", default="brownian_data4.mat", help="Filename of dataset")
+    parser.add_option("-n", "--num_states", default="10", help="Set the number of states to estimate for phylo-HMGP")
     parser.add_option("-l","--length", default="one", help="Filename of length vectors")
-    parser.add_option("-p","--root_path", default="/home/yy3/data1/replication_timing/hmmseg/vbak2/em", help="Root directory of the data files")
+    parser.add_option("-p","--root_path", default="", help="Root directory of the data files")
     parser.add_option("-m","--multiple", default="true", help="Use multivariate data (true, default) or single variate data (false) ")
     parser.add_option("-a","--species_name", default="human", help="Species to estimate states (used under single variate mode)")
     parser.add_option("-o","--sort_states", default="false", help="Whether to sort the states")
     parser.add_option("-r","--run_id", default="0", help="experiment id")
     parser.add_option("-c","--cons_param", default="1", help="constraint parameter")
-    parser.add_option("-t","--method_mode", default="1", help="method_mode: 0: BM-HMM; 1; OU-HMM")
+    parser.add_option("-t","--method_mode", default="1", help="method_mode: 0: Phylo-HMGP-BM; 1; Phylo-HMGP-OU")
     parser.add_option("-i","--initial_weight", default="0.1", help="initial weight for initial parameters")
     parser.add_option("-j","--initial_magnitude", default="2", help="initial magnitude for initial parameters")
-    parser.add_option("-s","--version", default="9", help="dataset version")
+    parser.add_option("-s","--version", default="1", help="dataset version")
 
     (opts, args) = parser.parse_args()
     return opts
