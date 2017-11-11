@@ -7,5 +7,27 @@ The source code base1.py is developed based on modification of the file base.py 
 
 A statement on reusing the source code of the hmmlearn package, by the requirement of the copyright holders of hmmlearn, is available in the file folder statement_hmmlearn. A list of the authors of the hmmlearn package, as complementary to the statement, is also included in the file folder statement_hmmlearn.
 
+The command to use Phylp-HMGP for evolutionary state estimation is as follows. 
+
+- -n, --num_states : the number of states to estimate for Phylo-HMGP, default = 10
+
+- -p, --root_path : root directory of the data files
+
+- -t, --type : to use E/P (Enhancer/Promoter) data or EE/P (Extended Enhancer/Promoter) data, default = ep
+
+- -r, --cell : the cell line used for training and evaluation, default = GM12878
+
+- -k, --run_id : experiment id, default = 0
+
+- -c, --cons_param : constraint parameter, default = 1
+
+- -t, --method_mode : method_mode: 0- Phylo-HMGP-BM; 1- Phylo-HMGP-OU", default = 1
+
+- -i, --initial_weight : initial weight for initial parameters, default = 0.1
+
+- -j, --initial_magnitude : initial magnitude for initial parameters, default = 2
+
+- -s, --version : dataset version, default = 1
+
 
 
