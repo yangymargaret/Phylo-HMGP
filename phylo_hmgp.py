@@ -1641,7 +1641,7 @@ def run(hmm_estimate,num_states,filename,length_vec,root_path,multiple,species_n
         sort_states,run_id1,cons_param,method_mode,initial_weight,initial_magnitude, version):
     
     # load the edge list
-    filename2 = "edge.1.txt"    
+    filename2 = "input_example/edge.1.txt"    
     if(os.path.exists(filename2)==True):
         f = open(filename2, 'r')
         print("edge list loaded")
@@ -1649,7 +1649,7 @@ def run(hmm_estimate,num_states,filename,length_vec,root_path,multiple,species_n
         print edge_list
 
     # load branch length file if provided
-    filename2 = "branch_length.1.txt"
+    filename2 = "input_example/branch_length.1.txt"
     if(os.path.exists(filename2)==True):
         f = open(filename2, 'r')
         print("branch list loaded")
@@ -1667,18 +1667,17 @@ def run(hmm_estimate,num_states,filename,length_vec,root_path,multiple,species_n
     version = int(version)
 
     # load the features
-    filename1 = "sig_feature.1.txt" # input
+    filename1 = "input_example/sig_feature.1.txt" # input
     if(os.path.exists(filename1)==False):
         print "there is no such file %s"%(filename1)
         return
-    filename2 = "sig_lenVec.1.txt"  # input
+    filename2 = "input_example/sig_lenVec.1.txt"  # input
 
     if(os.path.exists(filename2)==False):
         print "there is no such file %s"%(filename2)
         return
 
     # x1 = np.loadtxt(filename1, dtype='float', delimiter='\t')
-    #x1 = x_1[:,1:] # the first column is region_id
 
     sig = np.loadtxt(filename1,dtype={'names':('chrname','start','stop','value1','value2','value3','value4','value5'),
                                     'formats':('S10','int32','int32','float32','float32','float32','float32','float32')}) # need to be modified
