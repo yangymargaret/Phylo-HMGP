@@ -9,6 +9,8 @@ A statement on reusing the source code of the hmmlearn package, by the requireme
 
 The command to use Phylp-HMGP for evolutionary state estimation is as follows. 
 
+python phylo_hmgp.py [Options]
+
 - -n, --num_states : the number of states to estimate for Phylo-HMGP, default = 10
 
 - -p, --root_path : root directory of the data files
@@ -29,5 +31,5 @@ The command to use Phylp-HMGP for evolutionary state estimation is as follows.
 
 - -s, --version : dataset version, default = 1
 
-
+Example: python phylo_hmgp.py -t 0 -n 20 -r 0 (using Phylo-HMGP-OU for estimating 20 states on the provided example data)
 
