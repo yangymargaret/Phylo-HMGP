@@ -1665,20 +1665,20 @@ def run(hmm_estimate,num_states,filename,length_vec,root_path,multiple,species_n
     version = int(version)
 
     # load the features
-    filename1 = "input_example/sig_feature.1.txt" # input
+    filename1 = "input_example/sig.feature.1.txt" # input
     if(os.path.exists(filename1)==False):
         print "there is no such file %s"%(filename1)
         return
-    filename2 = "input_example/sig_lenVec.1.txt"  # input
+    filename2 = "input_example/sig.lenVec.1.txt"  # input
 
     if(os.path.exists(filename2)==False):
         print "there is no such file %s"%(filename2)
         return
 
-    # x1 = np.loadtxt(filename1, dtype='float', delimiter='\t')
+    x1 = np.loadtxt(filename1, dtype='float', delimiter='\t')
 
-    sig = np.loadtxt(filename1,dtype={'names':('chrname','start','stop','value1','value2','value3','value4','value5'),
-                                    'formats':('S10','int32','int32','float32','float32','float32','float32','float32')}) # need to be modified
+    # sig = np.loadtxt(filename1,dtype={'names':('chrname','start','stop','value1','value2','value3','value4','value5'),
+    #                                'formats':('S10','int32','int32','float32','float32','float32','float32','float32')}) # need to be modified
 
     x1 = np.array((sig['value1'],sig['value2'],sig['value3'],sig['value4'],sig['value5'])).T
 
