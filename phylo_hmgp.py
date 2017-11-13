@@ -21,24 +21,12 @@ import math
 import random
 import scipy
 import scipy.io
-import tensorflow as tf
-
-import matplotlib
-matplotlib.use('Agg')
-import matplotlib.pyplot as plt
 
 from numpy.linalg import inv, det, norm
-
-import hmmlearn
-from hmmlearn import hmm
 from scipy.optimize import minimize
 
-import pickle
-
 from optparse import OptionParser
-
 import os.path
-
 import warnings
 
 
