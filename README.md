@@ -15,15 +15,11 @@ python phylo_hmgp.py [Options]
 
 - -p, --root_path : root directory of the data files
 
-- -t, --type : to use E/P (Enhancer/Promoter) data or EE/P (Extended Enhancer/Promoter) data, default = ep
-
-- -r, --cell : the cell line used for training and evaluation, default = GM12878
-
-- -k, --run_id : experiment id, default = 0
+- -r, --run_id : experiment id, default = 0
 
 - -c, --cons_param : constraint parameter, default = 1
 
-- -t, --method_mode : method_mode: 0- Phylo-HMGP-BM; 1- Phylo-HMGP-OU", default = 1
+- -t, --method_mode : method_mode: 0- Phylo-HMGP-BM; 1- Phylo-HMGP-OU, default = 1
 
 - -i, --initial_weight : initial weight for initial parameters, default = 0.1
 
