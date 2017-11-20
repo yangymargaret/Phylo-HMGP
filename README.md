@@ -29,6 +29,7 @@ python phylo_hmgp.py [Options]
 
 Example: python phylo_hmgp.py -t 0 -n 20 -r 0 (using Phylo-HMGP-OU for estimating 20 states on the provided example data)
 
+To use Phylo-HMGP, please first complie the C source file _hmmc.c into a Python module named _hmmc.
 
 ************************************************************************************
 # Required pre-installed packages
