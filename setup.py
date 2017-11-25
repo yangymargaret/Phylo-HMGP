@@ -1,12 +1,3 @@
-#! /usr/bin/env python
-#
-# Copyright (C) 2007-2009 Cournapeau David <cournape@gmail.com>
-#               2010 Fabian Pedregosa <fabian.pedregosa@inria.fr>
-#               2014 Gael Varoquaux
-#               2014-2016 Sergei Lebedev <superbobry@gmail.com>
-
-"""Hidden Markov Models in Python with scikit-learn like API"""
-
 import sys
 
 try:
