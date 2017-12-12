@@ -1685,9 +1685,6 @@ def run(hmm_estimate,num_states,filename,length_vec,root_path,multiple,species_n
 
     path_1 = ""  # please define the output directory
 
-    #x = x[0:5000,:]
-    #len_vec = [x.shape[0]]
-
     if method_mode == 0:
         tree1 = phyloHMM(n_components=n_components1, run_id=run_id, n_samples = x.shape[0], n_features = x.shape[1], 
                      observation=x, edge_list=edge_list, initial_magnitude = initial_magnitude, 
