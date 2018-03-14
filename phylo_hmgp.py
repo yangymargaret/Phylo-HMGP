@@ -6,14 +6,13 @@ Devoloped using hmmlearn
 import numpy as np
 from scipy.misc import logsumexp
 from sklearn import cluster
-from sklearn import mixture
 from sklearn.mixture import (
     sample_gaussian,
     log_multivariate_normal_density,
     distribute_covar_matrix_to_match_covariance_type, _validate_covars)
 from sklearn.utils import check_random_state
 
-from base1 import _BaseHMM
+from base_variant import _BaseHMM
 from utils import iter_from_X_lengths, normalize
 
 import pandas as pd
@@ -24,42 +23,12 @@ import math
 import random
 import scipy
 import scipy.io
-import tensorflow as tf
-
-import matplotlib
-matplotlib.use('Agg')
-import matplotlib.pyplot as plt
-
-import theano
-import theano.tensor as T
-from theano.compile.nanguardmode import NanGuardMode
-
-import lasagne
-from lasagne import nonlinearities
-from lasagne import init
-from lasagne.utils import unroll_scan
-
-from lasagne.layers.base import MergeLayer, Layer
-from lasagne.layers.input import InputLayer
-from lasagne.layers.dense import DenseLayer
-from lasagne.layers import helper
-
-from lasagne.layers.recurrent import Gate
-from theano.sandbox.rng_mrg import MRG_RandomStreams as RandomStreams
-from lasagne.random import get_rng
 
 from numpy.linalg import inv, det, norm
-
-import hmmlearn
-from hmmlearn import hmm
 from scipy.optimize import minimize
 
-import pickle
-
 from optparse import OptionParser
-
 import os.path
-
 import warnings
 
 
@@ -2004,16 +1973,16 @@ class GaussianHMM(_BaseHMM):
 def parse_args():
     parser = OptionParser(usage="Replication timing state estimation", add_help_option=False)
     parser.add_option("-h","--hmm", default="false", help="Perform HMM estimation (default: false")
-    parser.add_option("-n", "--num_states", default="8", help="Set the number of states to estimate for HMM model")
+    parser.add_option("-n", "--num_states", default="8", help="Set the number of states to estimate for Phylo-HMGP model")
     parser.add_option("-f","--filename", default="brownian_data4.mat", help="Filename of dataset")
     parser.add_option("-l","--length", default="one", help="Filename of length vectors")
-    parser.add_option("-p","--root_path", default="/home/yy3/data1/replication_timing/hmmseg/vbak2/em", help="Root directory of the data files")
+    parser.add_option("-p","--root_path", default="input_example", help="Root directory of the data files")
     parser.add_option("-m","--multiple", default="true", help="Use multivariate data (true, default) or single variate data (false) ")
     parser.add_option("-a","--species_name", default="human", help="Species to estimate states (used under single variate mode)")
     parser.add_option("-o","--sort_states", default="false", help="Whether to sort the states")
     parser.add_option("-r","--run_id", default="0", help="experiment id")
     parser.add_option("-c","--cons_param", default="1", help="constraint parameter")
-    parser.add_option("-t","--method_mode", default="3", help="method_mode: 0: Gaussian-HMM; 1: Kmeans; 2: BM-HMM; 3: OU-HMM")
+    parser.add_option("-t","--method_mode", default="1", help="method_mode: 0: Phylo-HMGP-BM; Phylo-HMGP-OU")
     parser.add_option("-d","--initial_mode", default="0", help="initial mode: 0: positive random vector; 1: positive random vector for branches")
     parser.add_option("-i","--initial_weight", default="0.2", help="initial weight 0 for initial parameters")
     parser.add_option("-k","--initial_weight1", default="0", help="initial weight 1 for initial parameters")
