@@ -1701,10 +1701,7 @@ def run(hmm_estimate,num_states,filename,length_vec,root_path,multiple,species_n
     len_vec = np.loadtxt(filename2,dtype='int32',delimiter='\t')
     print sum(len_vec)
 
-    x1 = np.loadtxt(filename1, dtype='float', delimiter='\t')
-
     print "samples loaded"
-    print x.shape
 
     path_1 = "output"  # please define the output directory
 
