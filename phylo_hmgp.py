@@ -970,10 +970,6 @@ class phyloHMM1(_BaseHMM):
         means_weight = self.means_weight
 
         # print "M_step"
-        # TODO: find a proper reference for estimates for different
-        #       covariance models.
-        # Based on Huang, Acero, Hon, "Spoken Language Processing",
-        # p. 443 - 445
         denom = stats['post'][:, np.newaxis]
 
         if 'c' in self.params:
@@ -1282,8 +1278,6 @@ class phyloHMM(_BaseHMM):
                 cv.shape = (1, 1)
             self._covars_ = distribute_covar_matrix_to_match_covariance_type(
                 cv, self.covariance_type, self.n_components).copy()
-
-    # def _init_branch_length(self):
         
     def _compute_log_likelihood(self, X):
         return log_multivariate_normal_density(
@@ -1638,11 +1632,6 @@ class phyloHMM(_BaseHMM):
         means_weight = self.means_weight
 
         print "M_step"
-
-        # TODO: find a proper reference for estimates for different
-        #       covariance models.
-        # Based on Huang, Acero, Hon, "Spoken Language Processing",
-        # p. 443 - 445
         denom = stats['post'][:, np.newaxis]
 
         print denom
@@ -1985,7 +1974,7 @@ def parse_args():
 def run(hmm_estimate,num_states,filename,length_vec,root_path,multiple,species_name,
         sort_states,run_id1,cons_param,method_mode,initial_mode,initial_weight,initial_weight1,initial_magnitude, version):
     
-     # load the edge list
+    # load the edge list
     filename2 = "input_example/edge.1.txt"    
     if(os.path.exists(filename2)==True):
         f = open(filename2, 'r')
