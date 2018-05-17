@@ -70,7 +70,6 @@ def ou_lik(params, cv, state_id, stats, T, n_samples):
                 - obsmean - obsmean.T
                 + np.outer(theta, theta)*stats['post'][c])
 
-        # weights_sum = stats['post'][c]
         lik = stats['post'][c]*np.log(det(V))/n_samples+np.sum(inv(V)*Sn_w)/n_samples
 
         return lik
@@ -143,8 +142,7 @@ def brownian_lik1(params, state_id, stats, mean_value, base_vec, n_samples, n_fe
         for branch_param in params:
             cv += branch_param*base_vec[i]
             i += 1
-        
-        # weights_sum = stats['post'][c]
+
         lik = stats['post'][c]*np.log(det(cv))/n_samples+np.sum(inv(cv)*Sn_w)/n_samples
 
         return lik
